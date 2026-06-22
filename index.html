@@ -41,12 +41,13 @@
         <script src="data/RailNetwork_Idaho_Export_3.js"></script>
         <script src="data/Railroad_Grade_Crossings_ID_4.js"></script>
         <script src="data/treasure_valley_customers_geocoded_5.js"></script>
-        <script src="data/Dcopy_6.js"></script>
-        <script src="data/D_7.js"></script>
+        <script src="data/ParkandRideArea_6.js"></script>
+        <script src="data/Dcopy_7.js"></script>
+        <script src="data/D_8.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[43.46019437620588,-116.73922955756541],[43.74257201166855,-116.03483855929593]]);
+        }).fitBounds([[43.60841377712127,-116.51608044682096],[43.61429568615203,-116.50140563435707]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -474,7 +475,52 @@
 
         bounds_group.addLayer(layer_treasure_valley_customers_geocoded_5);
         cluster_treasure_valley_customers_geocoded_5.addTo(map);
-        function pop_Dcopy_6(feature, layer) {
+        function pop_ParkandRideArea_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Park and Ride Area'] !== null ? autolinker.link(String(feature.properties['Park and Ride Area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_ParkandRideArea_6_0() {
+            return {
+                pane: 'pane_ParkandRideArea_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,207,80,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ParkandRideArea_6');
+        map.getPane('pane_ParkandRideArea_6').style.zIndex = 406;
+        map.getPane('pane_ParkandRideArea_6').style['mix-blend-mode'] = 'normal';
+        var layer_ParkandRideArea_6 = new L.geoJson(json_ParkandRideArea_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ParkandRideArea_6',
+            layerName: 'layer_ParkandRideArea_6',
+            pane: 'pane_ParkandRideArea_6',
+            onEachFeature: pop_ParkandRideArea_6,
+            style: style_ParkandRideArea_6_0,
+        });
+        bounds_group.addLayer(layer_ParkandRideArea_6);
+        map.addLayer(layer_ParkandRideArea_6);
+        function pop_Dcopy_7(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -490,9 +536,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Dcopy_6_0() {
+        function style_Dcopy_7_0() {
             return {
-                pane: 'pane_Dcopy_6',
+                pane: 'pane_Dcopy_7',
                 opacity: 1,
                 color: 'rgba(0,0,0,0.744)',
                 dashArray: '',
@@ -503,21 +549,21 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Dcopy_6');
-        map.getPane('pane_Dcopy_6').style.zIndex = 406;
-        map.getPane('pane_Dcopy_6').style['mix-blend-mode'] = 'normal';
-        var layer_Dcopy_6 = new L.geoJson(json_Dcopy_6, {
+        map.createPane('pane_Dcopy_7');
+        map.getPane('pane_Dcopy_7').style.zIndex = 407;
+        map.getPane('pane_Dcopy_7').style['mix-blend-mode'] = 'normal';
+        var layer_Dcopy_7 = new L.geoJson(json_Dcopy_7, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Dcopy_6',
-            layerName: 'layer_Dcopy_6',
-            pane: 'pane_Dcopy_6',
-            onEachFeature: pop_Dcopy_6,
-            style: style_Dcopy_6_0,
+            dataVar: 'json_Dcopy_7',
+            layerName: 'layer_Dcopy_7',
+            pane: 'pane_Dcopy_7',
+            onEachFeature: pop_Dcopy_7,
+            style: style_Dcopy_7_0,
         });
-        bounds_group.addLayer(layer_Dcopy_6);
-        map.addLayer(layer_Dcopy_6);
-        function pop_D_7(feature, layer) {
+        bounds_group.addLayer(layer_Dcopy_7);
+        map.addLayer(layer_Dcopy_7);
+        function pop_D_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -533,9 +579,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_D_7_0() {
+        function style_D_8_0() {
             return {
-                pane: 'pane_D_7',
+                pane: 'pane_D_8',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -548,20 +594,20 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_D_7');
-        map.getPane('pane_D_7').style.zIndex = 407;
-        map.getPane('pane_D_7').style['mix-blend-mode'] = 'normal';
-        var layer_D_7 = new L.geoJson(json_D_7, {
+        map.createPane('pane_D_8');
+        map.getPane('pane_D_8').style.zIndex = 408;
+        map.getPane('pane_D_8').style['mix-blend-mode'] = 'normal';
+        var layer_D_8 = new L.geoJson(json_D_8, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_D_7',
-            layerName: 'layer_D_7',
-            pane: 'pane_D_7',
-            onEachFeature: pop_D_7,
-            style: style_D_7_0,
+            dataVar: 'json_D_8',
+            layerName: 'layer_D_8',
+            pane: 'pane_D_8',
+            onEachFeature: pop_D_8,
+            style: style_D_8_0,
         });
-        bounds_group.addLayer(layer_D_7);
-        map.addLayer(layer_D_7);
+        bounds_group.addLayer(layer_D_8);
+        map.addLayer(layer_D_8);
         map.on("zoomend", function(e) {
             if (map.getZoom() <= 19 && map.getZoom() >= 10) {
                 map.addLayer(cluster_Railroad_Grade_Crossings_ID_4);
